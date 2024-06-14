@@ -1,0 +1,5 @@
+$ ls
+
+$ ls -a
+
+$ ls -l /var/log
