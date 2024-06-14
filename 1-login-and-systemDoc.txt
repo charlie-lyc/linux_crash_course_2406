@@ -1,0 +1,372 @@
+# Secure SHell
+
+$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+17876: eth0@if17877: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue state UP group default 
+    link/ether 02:42:c0:01:b0:0c brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet <<192.1.176.12/24>> brd 192.1.176.255 scope global eth0
+       valid_lft forever preferred_lft forever
+17878: eth1@if17879: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+    link/ether 02:42:ac:19:00:44 brd ff:ff:ff:ff:ff:ff link-netnsid 1
+    inet 172.25.0.68/24 brd 172.25.0.255 scope global eth1
+       valid_lft forever preferred_lft forever
+
+$ ssh <user>@<<192.1.176.12>>
+<user>@<<192.1.176.12>>'s password:
+
+-----------------------------------------------------------------------------------------------------
+$ ls --help
+
+$ ls -l
+
+$ journalctl --help
+
+$ man journalctl
+
+$ man man
+
+$ man 1 printf
+
+$ man 2 printf
+No manual entry for printf in section 2
+
+# 매뉴얼 검색 : ex) directory, directories, ...
+$ apropos director
+
+# 만약 검색 결과가 아래와 같을 경우 아래의 명령을 실행
+director: nothing appropriate
+
+# 매뉴얼 업데이트
+$ (sudo) mandb
+
+# 만약 검색과 너무 많을 경우, 특정 섹션에서만 검색
+$ apropos -s 1,8 director
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 명령어 자동완성
+$ systemc + [TAB]
+$ sytemctl
+
+# 명령어 제안
+$ sytemctl  + [TAB][TAB]
+add-requires            disable                 hybrid-sleep            list-dependencies       poweroff                revert                  suspend
+add-wants               edit                    import-environment      list-jobs               preset                  service-watchdogs       suspend-then-hibernate
+cancel                  emergency               is-active               list-machines           preset-all              set-default             switch-root
+cat                     enable                  is-enabled              list-sockets            reboot                  set-environment         try-reload-or-restart
+condreload              exit                    is-failed               list-timers             reenable                set-property            try-restart
+condrestart             force-reload            isolate                 list-unit-files         reload                  show                    unmask
+condstop                get-default             is-system-running       list-units              reload-or-restart       show-environment        unset-environment
+daemon-reexec           halt                    kexec                   log-level               rescue                  start
+daemon-reload           help                    kill                    log-target              reset-failed            status
+default                 hibernate               link                    mask                    restart                 stop
+$ sytemctl
+
+$ systemctl l + [TAB][TAB]
+link               list-jobs          list-sockets       list-unit-files    log-level
+list-dependencies  list-machines      list-timers        list-units         log-target
+$ systemctl l
+
+# 명령어 자동완성 및 제안
+$ ls /u + [TAB][TAB][TAB]
+$ ls /usr/
+bin/     games/   include/ lib/     lib32/   lib64/   libexec/ libx32/  local/   sbin/    share/   src/
+$ ls /usr/
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ ls
+
+$ ls -a
+
+$ ls -l /var/log
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ ssh -V
+OpenSSH_8.7p1, OpenSSL 3.2.1 30 Jan 2024
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[bob@centos-host ~]$ hostname + [TAB][TAB]
+hostname     hostnamectl
+
+[bob@centos-host ~]$ hostname
+dev-host01
+
+[bob@dev-host01 ~]$ hostnamectl
+ Static hostname: centos-host
+       Icon name: computer-container
+         Chassis: container ☐
+      Machine ID: 1109cf12e7614d73bc324d38a2866701
+         Boot ID: fa14693cf8ff4f629580787a4e863be8
+  Virtualization: container-other
+Operating System: CentOS Stream 9                 
+     CPE OS Name: cpe:/o:centos:centos:9
+          Kernel: Linux 5.4.0-1106-gcp
+    Architecture: x86-64
+Firmware Version: Google
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ mandb
+Purging old database entries in /usr/share/man...
+Processing manual pages under /usr/share/man...
+mandb: can't chmod /var/cache/man/CACHEDIR.TAG: Operation not permitted
+mandb: can't remove /var/cache/man/CACHEDIR.TAG: Permission denied
+mandb: fopen /var/cache/man/4961: Permission denied
+Purging old database entries in /usr/share/man/de...
+Processing manual pages under /usr/share/man/de...
+mandb: can't chmod /var/cache/man/de/CACHEDIR.TAG: Operation not permitted
+mandb: can't remove /var/cache/man/de/CACHEDIR.TAG: Permission denied
+mandb: fopen /var/cache/man/de/4961: Permission denied
+Purging old database entries in /usr/share/man/ru...
+Processing manual pages under /usr/share/man/ru...
+mandb: can't chmod /var/cache/man/ru/CACHEDIR.TAG: Operation not permitted
+mandb: can't remove /var/cache/man/ru/CACHEDIR.TAG: Permission denied
+mandb: fopen /var/cache/man/ru/4961: Permission denied
+Purging old database entries in /usr/local/share/man...
+Processing manual pages under /usr/local/share/man...
+mandb: can't chmod /var/cache/man/local/CACHEDIR.TAG: Operation not permitted
+mandb: can't remove /var/cache/man/local/CACHEDIR.TAG: Permission denied
+mandb: fopen /var/cache/man/local/4961: Permission denied
+0 man subdirectories contained newer manual pages.
+0 manual pages were added.
+0 stray cats were added.
+0 old database entries were purged.
+
+# sudo 권한으로 실행!
+$ sudo mandb
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ ssh -v alex@localhost
+OpenSSH_8.7p1, OpenSSL 3.2.1 30 Jan 2024
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Reading configuration data /etc/ssh/ssh_config.d/50-redhat.conf
+debug1: Reading configuration data /etc/crypto-policies/back-ends/openssh.config
+debug1: configuration requests final Match pass
+debug1: re-parsing configuration
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Reading configuration data /etc/ssh/ssh_config.d/50-redhat.conf
+debug1: Reading configuration data /etc/crypto-policies/back-ends/openssh.config
+debug1: Connecting to localhost [127.0.0.1] port 22.
+debug1: Connection established.
+debug1: identity file /home/bob/.ssh/id_rsa type -1
+debug1: identity file /home/bob/.ssh/id_rsa-cert type -1
+debug1: identity file /home/bob/.ssh/id_dsa type -1
+debug1: identity file /home/bob/.ssh/id_dsa-cert type -1
+debug1: identity file /home/bob/.ssh/id_ecdsa type -1
+debug1: identity file /home/bob/.ssh/id_ecdsa-cert type -1
+debug1: identity file /home/bob/.ssh/id_ecdsa_sk type -1
+debug1: identity file /home/bob/.ssh/id_ecdsa_sk-cert type -1
+debug1: identity file /home/bob/.ssh/id_ed25519 type -1
+debug1: identity file /home/bob/.ssh/id_ed25519-cert type -1
+debug1: identity file /home/bob/.ssh/id_ed25519_sk type -1
+debug1: identity file /home/bob/.ssh/id_ed25519_sk-cert type -1
+debug1: identity file /home/bob/.ssh/id_xmss type -1
+debug1: identity file /home/bob/.ssh/id_xmss-cert type -1
+debug1: Local version string SSH-2.0-OpenSSH_8.7
+debug1: Remote protocol version 2.0, remote software version OpenSSH_8.7
+debug1: compat_banner: match: OpenSSH_8.7 pat OpenSSH* compat 0x04000000
+debug1: Authenticating to localhost:22 as 'alex'
+debug1: load_hostkeys: fopen /home/bob/.ssh/known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /home/bob/.ssh/known_hosts2: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: algorithm: curve25519-sha256
+debug1: kex: host key algorithm: ssh-ed25519
+debug1: kex: server->client cipher: aes256-gcm@openssh.com MAC: <implicit> compression: none
+debug1: kex: client->server cipher: aes256-gcm@openssh.com MAC: <implicit> compression: none
+debug1: kex: curve25519-sha256 need=32 dh_need=32
+debug1: kex: curve25519-sha256 need=32 dh_need=32
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug1: SSH2_MSG_KEX_ECDH_REPLY received
+debug1: Server host key: ssh-ed25519 SHA256:+0zxCrnHZ0+SVloicqhGP9La4SXG7Go4o+DsOdKs5Z8
+debug1: load_hostkeys: fopen /home/bob/.ssh/known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /home/bob/.ssh/known_hosts2: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: hostkeys_find_by_key_hostfile: hostkeys file /home/bob/.ssh/known_hosts does not exist
+debug1: hostkeys_find_by_key_hostfile: hostkeys file /home/bob/.ssh/known_hosts2 does not exist
+debug1: hostkeys_find_by_key_hostfile: hostkeys file /etc/ssh/ssh_known_hosts does not exist
+debug1: hostkeys_find_by_key_hostfile: hostkeys file /etc/ssh/ssh_known_hosts2 does not exist
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ED25519 key fingerprint is SHA256:+0zxCrnHZ0+SVloicqhGP9La4SXG7Go4o+DsOdKs5Z8.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? y
+Please type 'yes', 'no' or the fingerprint: yes
+debug1: SELinux support disabled
+Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.
+debug1: ssh_packet_send2_wrapped: resetting send seqnr 3
+debug1: rekey out after 4294967296 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: ssh_packet_read_poll2: resetting read seqnr 3
+debug1: SSH2_MSG_NEWKEYS received
+debug1: rekey in after 4294967296 blocks
+debug1: Will attempt key: /home/bob/.ssh/id_rsa 
+debug1: Will attempt key: /home/bob/.ssh/id_dsa 
+debug1: Will attempt key: /home/bob/.ssh/id_ecdsa 
+debug1: Will attempt key: /home/bob/.ssh/id_ecdsa_sk 
+debug1: Will attempt key: /home/bob/.ssh/id_ed25519 
+debug1: Will attempt key: /home/bob/.ssh/id_ed25519_sk 
+debug1: Will attempt key: /home/bob/.ssh/id_xmss 
+debug1: SSH2_MSG_EXT_INFO received
+debug1: kex_input_ext_info: server-sig-algs=<ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com>
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password
+debug1: Next authentication method: gssapi-with-mic
+debug1: No credentials were supplied, or the credentials were unavailable or inaccessible
+No Kerberos credentials available (default cache: KEYRING:persistent:1000)
+
+debug1: No credentials were supplied, or the credentials were unavailable or inaccessible
+No Kerberos credentials available (default cache: KEYRING:persistent:1000)
+
+debug1: Next authentication method: publickey
+debug1: Trying private key: /home/bob/.ssh/id_rsa
+debug1: Trying private key: /home/bob/.ssh/id_dsa
+debug1: Trying private key: /home/bob/.ssh/id_ecdsa
+debug1: Trying private key: /home/bob/.ssh/id_ecdsa_sk
+debug1: Trying private key: /home/bob/.ssh/id_ed25519
+debug1: Trying private key: /home/bob/.ssh/id_ed25519_sk
+debug1: Trying private key: /home/bob/.ssh/id_xmss
+debug1: Next authentication method: password
+alex@localhost's password:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ host + [TAB][TAB]
+hostid       hostname     hostnamectl
+$ host
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ apropos -s 1 administration
+virt-admin (1)       - daemon administration interface
+
+$ apropos -s 2 administration
+administration: nothing appropriate.
+
+$ apropos -s 3 administration
+administration: nothing appropriate.
+
+$ apropos -s 8 administration
+arptables (8)        - ARP table administration (nft-based)
+arptables-nft (8)    - ARP table administration (nft-based)
+ebtables (8)         - Ethernet bridge frame table administration (nft-based)
+ebtables-nft (8)     - Ethernet bridge frame table administration (nft-based)
+intro (8)            - introduction to administration and privileged commands
+ip6tables (8)        - administration tool for IPv4/IPv6 packet filtering and NAT
+iptables (8)         - administration tool for IPv4/IPv6 packet filtering and NAT
+iscsiadm (8)         - open-iscsi administration utility
+nft (8)              - Administration tool of the nftables framework for packet filtering and classification
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ ls -l /home/bob/data
+total 0
+-rw-r--r-- 1 root root 0 Jun 14 02:07 data.txt
+
+$ ls -la /home/bob/data
+total 12
+drwxr-xr-x 2 root root 4096 Jun 14 02:07 .
+drwx------ 1 bob  bob  4096 Jun 14 02:07 ..
+-rw-r--r-- 1 root root    0 Jun 14 02:07 .myfile1
+-rw-r--r-- 1 root root    0 Jun 14 02:07 .myfile2
+-rw-r--r-- 1 root root    0 Jun 14 02:07 data.txt
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[bob@centos-host ~]$ ssh bob@dev-host01
+The authenticity of host 'dev-host01 (192.4.21.12)' can't be established.
+ED25519 key fingerprint is SHA256:50rlA/Z1hESBJfYoxfDJi0SyclwiTvnPWtNP5fmHuc8.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'dev-host01' (ED25519) to the list of known hosts.
+bob@dev-host01's password: 
+[bob@dev-host01 ~]$ touch /home/bob/myfile
+[bob@dev-host01 ~]$ exit
+logout
+Connection to dev-host01 closed.
+[bob@centos-host ~]$
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ apropos ssh
+ssh: nothing appropriate.
+
+$ mandb
+Processing manual pages under /usr/share/man...
+mandb: warning: cannot create catdir /var/cache/man/cat1
+mandb: warning: cannot create catdir /var/cache/man/cat2
+mandb: warning: cannot create catdir /var/cache/man/cat3
+mandb: warning: cannot create catdir /var/cache/man/cat4
+mandb: warning: cannot create catdir /var/cache/man/cat5
+mandb: warning: cannot create catdir /var/cache/man/cat6
+mandb: warning: cannot create catdir /var/cache/man/cat7
+mandb: warning: cannot create catdir /var/cache/man/cat8
+mandb: warning: cannot create catdir /var/cache/man/cat9
+Processing manual pages under /usr/share/man/de...
+mandb: warning: cannot create catdir /var/cache/man/de
+mandb: can't create index cache /var/cache/man/de/4540: No such file or directory
+mandb: can't update index cache /var/cache/man/de/4540: No such file or directory
+done.
+
+$ apropos ssh
+ssh: nothing appropriate.
+
+# sudo 권한으로 실행!
+$ sudo mandb
+...
+
+$ apropos ssh
+docker-machine-ssh (1) - SSH into a virtual machine
+EVP_KDF-SSHKDF (7ossl) - The SSHKDF EVP_KDF implementation
+git-shell (1)        - Restricted login shell for Git-only SSH access
+nbdkit-ssh-plugin (1) - access disk images over the SSH protocol
+podman-machine-ssh (1) - SSH into a virtual machine
+scp (1)              - OpenSSH secure file copy
+sftp (1)             - OpenSSH secure file transfer
+sftp-server (8)      - OpenSSH SFTP server subsystem
+ssh (1)              - OpenSSH remote login client
+ssh-add (1)          - adds private key identities to the OpenSSH authentication agent
+ssh-agent (1)        - OpenSSH authentication agent
+ssh-copy-id (1)      - use locally available keys to authorise logins on a remote machine
+ssh-keygen (1)       - OpenSSH authentication key utility
+ssh-keyscan (1)      - gather SSH public keys from servers
+ssh-keysign (8)      - OpenSSH helper for host-based authentication
+ssh-pkcs11-helper (8) - OpenSSH helper for PKCS#11 support
+ssh-sk-helper (8)    - OpenSSH helper for FIDO authenticator support
+ssh_config (5)       - OpenSSH client configuration file
+sshd (8)             - OpenSSH daemon
+sshd_config (5)      - OpenSSH daemon configuration file
+virt-ssh-helper (8)  - libvirt socket proxy
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+$ apropos nfs
+...
+
+$ apropos nfs | grep -i 'configuration'
+confstr (3)          - get configuration dependent string variables
+idmapd.conf (5)      - configuration file for libnfsidmap
+nfs.conf (5)         - general configuration for NFS daemons and tools
+nfsconf (8)          - Query various NFS configuration settings
+nfsmount.conf (5)    - Configuration file for NFS mounts
+
+$ man nfsmount.conf printf
+...
+FILES
+       /etc/nfsmount.conf
+                 Default NFS mount configuration file
+
+       /etc/nfsmount.conf.d
+                 When this directory exists and files ending with ".conf" exist, those files will be used
+                 to  set  configuration  variables.  These files will override variables set in /etc/nfs‐
+                 mount.conf
+...
+
+$ cp /etc/nfsmount.conf /home/bob/nfs
+
