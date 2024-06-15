@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
-# 참고로 Docker 이용시
+# *** 참고로 Docker 이용시 ***
 
 $ docker pull centos
 
@@ -33,16 +33,16 @@ f1baa9aedc82   centos    "/bin/bash"   55 minutes ago   Up 3 minutes            
 $ docker stop centos-cont
 
 -----------------------------------------------------------------------------------------------------
-# 만약 실습하는 환경을 새로운 이미지로 저장하고 실행하고 싶을 경우
+# *** 실습하는 환경을 새로운 이미지로 저장하고 실행하고 싶을 경우
 # - tag 는 지정하지 않을 경우 latest가 기본 설정
              <container_id> <new_image_name:tag>
 $ docker commit f1baa9aedc82 linux-crash:init
 $ docker run -it --name linux-crash-cont linux-crash:init
 
-# 파일, 폴더를 업로드하여 실행하고 싶을 경우
+# *** 파일, 폴더를 업로드하여 실행하고 싶을 경우
 $ docker run -it --name linux-crash-cont -v /path/to/work:/work linux-crash:init
 
-# 특정 포트를 열어 실행하고 싶을 경우
+# *** 특정 포트를 열어 실행하고 싶을 경우
 $ docker run -it -p <host_port>:<docker_port> --name linux-crash-cont -v /path/to/work:/work linux-crash:init
 
 -----------------------------------------------------------------------------------------------------
