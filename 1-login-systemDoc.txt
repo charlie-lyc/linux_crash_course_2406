@@ -46,9 +46,9 @@ $ docker run -it --name linux-crash-cont -v /path/to/work:/work linux-crash:init
 $ docker run -it -p <host_port>:<docker_port> --name linux-crash-cont -v /path/to/work:/work linux-crash:init
 
 # => 위와 같이 최초 컨테이너를 실행한 이후 그다음 부터는 터미널에 들어가지 않고 바로 명령어를 실행할 경우
-$ docker exec -it [container] [command arguments]
-
-ex) docker exec -it mysql-cont mysql -u root -p
+# $ docker exec -it [container] [command arguments]
+ex) docker exec -it linux-crash-cont /bin/bash
+    docker exec -it mysql-cont mysql -u root -p
     docker exec -it notebook-cont jupyter notebook (--allow-root)
 
 -----------------------------------------------------------------------------------------------------
