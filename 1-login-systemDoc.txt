@@ -49,7 +49,7 @@ $ docker run -it -p <host_port>:<docker_port> --name linux-crash-cont -v /path/t
 $ docker exec -it [container] [command arguments]
 
 ex) docker exec -it mysql-cont mysql -u root -p
-
+    docker exec -it notebook-cont jupyter notebook (--allow-root)
 
 -----------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------
