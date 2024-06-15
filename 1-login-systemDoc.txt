@@ -1,3 +1,29 @@
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+# 참고로 Docker 이용시
+
+$ docker pull centos
+
+$ docker run -it --name centos-cont centos
+[root@f1baa9aedc82 /]# uname
+Linux
+[root@f1baa9aedc82 /]# exit
+
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+$ docker ps -a
+CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS                      PORTS     NAMES
+f1baa9aedc82   centos       "/bin/bash"              48 minutes ago   Exited (0) 14 seconds ago             centos-cont
+
+$ docker restart centos-cont
+centos-cont
+
+$ docker exec -it centos-cont /bin/bash
+[root@f1baa9aedc82 /]#
+
+-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
 # Secure SHell
 
 $ ip a
