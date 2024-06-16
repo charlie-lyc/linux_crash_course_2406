@@ -4,7 +4,7 @@ $ ls
 
 $ ls -l(ong listing format)
 
-$ ls -a(ll files and directories including hidden )
+$ ls -a(ll files and directories including hidden)
 
 $ ls -l -a
 
@@ -12,13 +12,13 @@ $ ls -la
 
 $ ls -l /var/log
 
-$ ls -h(human readable format: ex) Kbyte)
+$ ls -h(human readable format: K[byte])
 
 $ ls -lah
 
 -----------------------------------------------------------------------------------------------------
 
-
+# print working directory
 $ pwd
 
 -----------------------------------------------------------------------------------------------------
