@@ -1,10 +1,11 @@
 # list
-
 $ ls
 
-$ ls -l(ong listing format)
+# long listing format
+$ ls -l
 
-$ ls -a(ll files and directories including hidden)
+# all files and directories including hidden
+$ ls -a
 
 $ ls -l -a
 
@@ -12,7 +13,8 @@ $ ls -la
 
 $ ls -l /var/log
 
-$ ls -h(human readable format: K[byte])
+# human readable format: K[byte]
+$ ls -h
 
 $ ls -lah
 
@@ -20,6 +22,20 @@ $ ls -lah
 
 # print working directory
 $ pwd
+
+# change directory
+$ cd /var/log
+
+# go to parent directory
+$ cd ..
+
+# go to root directory
+$ cd /
+
+# go to previous directory
+$ cd -
+
+
 
 -----------------------------------------------------------------------------------------------------
 
