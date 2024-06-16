@@ -28,29 +28,84 @@ $ cd /var/log
 # go to parent directory
 $ cd ..
 
+# go to grand parent directory
+$ cd ../..
+
 # go to root directory
 $ cd /
 
 # go to previous directory
 $ cd -
 
-
-
------------------------------------------------------------------------------------------------------
-
-
+# go to 'home'(or 'root') directory
+$ cd
 
 -----------------------------------------------------------------------------------------------------
 
-
-
------------------------------------------------------------------------------------------------------
-
-
+# make directory
+$ mkdir /home/jane
 
 -----------------------------------------------------------------------------------------------------
 
-
-
+# make file
+$ touch /exmaple.txt
 
 -----------------------------------------------------------------------------------------------------
+
+# copy file: cp [source] [destination]
+# - 파일 이름을 정하지 않을 경우 해당 디렉토리 안에 동일한 이름으로 저장
+$ cp /example.txt /home
+$ cp /example.txt /home/jane
+
+$ ls /
+...  example.txt  ...
+$ ls -l /home
+example.txt  jane
+$ ls -l /home/jane
+example.txt
+
+# 즉 /home/jane 디렉토리 기준으로 3개 파일이 각각 존재
+# (1) ./receipt.txt
+# (2) ../receipt.txt
+# (3) ../../receipt.txt
+
+# - 파일 이름을 변경할 경우 해당 디렉토리 안에 다른 이름으로 저장
+$ cp /example.txt /home/example_copy.txt
+
+# copy recursively: cp -r [source] [destination(/directory_name)]
+# - 해당 디렉토리가 존재할 경우 그 디렉토리 안에 저장
+$ cp -r /home/jane /
+
+$ ls /jane
+example.txt
+
+# - 해당 디렉토리가 없는 경우 그 이름의 디렉토리로 저장
+$ cp -r /home/jane /smith
+
+$ ls /smith
+example.txt
+
+-----------------------------------------------------------------------------------------------------
+
+# move : mv [source] [destination]
+$ mv /smith /home
+
+$ ls /smith
+ls: cannot access '/smith': No such file or directory
+$ ls /home/smith
+example.txt
+
+-----------------------------------------------------------------------------------------------------
+
+# remove
+$ rm /jane/exmaple.txt
+
+$ ls /jane
+
+$ rm /jane
+rm: cannot remove '/jane': Is a directory
+
+$ rm -r /jane
+
+$ ls /jane
+ls: cannot access '/jane': No such file or directory
