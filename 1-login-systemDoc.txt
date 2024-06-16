@@ -2,9 +2,9 @@
 -----------------------------------------------------------------------------------------------------
 # *** 참고로 Docker 이용시 ***
 
-$ docker pull centos
+$ docker pull ubuntu
 
-$ docker run -it --name centos-cont centos
+$ docker run -it --name ubuntu-cont ubuntu
 [root@f1baa9aedc82 /]# uname
 Linux
 [root@f1baa9aedc82 /]# exit
@@ -14,23 +14,27 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 
 $ docker ps -a
 CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS                      PORTS     NAMES
-f1baa9aedc82   centos       "/bin/bash"              48 minutes ago   Exited (0) 14 seconds ago             centos-cont
+f1baa9aedc82   ubuntu       "/bin/bash"              48 minutes ago   Exited (0) 14 seconds ago             ubuntu-cont
 
-$ docker run -it --name centos-cont centos 
-docker: Error response from daemon: Conflict. The container name "/centos-cont" is already in use by container "f1baa9aedc82ed4f0be4860df7511165b48cda49605b8cadf9b3f550ea58a185". You have to remove (or rename) that container to be able to reuse that name.
-See 'docker run --help'.
+$ docker restart ubuntu-cont
+ubuntu-cont
 
-$ docker restart centos-cont
-centos-cont
-
-$ docker exec -it centos-cont /bin/bash
-[root@f1baa9aedc82 /]# exit
+$ docker exec -it ubuntu-cont /bin/bash
+[root@f1baa9aedc82 /]# apt update
+...
+[root@f1baa9aedc82 /]# apt upgrade
+...
+[root@f1baa9aedc82 /]# apt install man-db
+...
+[root@f1baa9aedc82 /]# unminimize
+...
+[root@f1baa9aedc82 /]# unminimize
 
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS         PORTS     NAMES
-f1baa9aedc82   centos    "/bin/bash"   55 minutes ago   Up 3 minutes             centos-cont
+f1baa9aedc82   ubuntu    "/bin/bash"   55 minutes ago   Up 3 minutes             ubuntu-cont
 
-$ docker stop centos-cont
+$ docker stop ubuntu-cont
 
 -----------------------------------------------------------------------------------------------------
 # *** 실습하는 환경을 새로운 이미지로 저장하고 실행할 경우
