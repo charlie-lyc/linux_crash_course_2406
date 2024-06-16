@@ -1,5 +1,15 @@
 $ ls
 
-$ ls -a
+$ ls -l(ist)
+
+$ ls -a(ll)
+
+$ ls -l -a
+
+$ ls -la
 
 $ ls -l /var/log
+
+$ ls -h(human readable format: kbyte)
+
+$ ls -lah
