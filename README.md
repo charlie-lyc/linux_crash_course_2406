@@ -1,1 +1,1 @@
-# linux_for_beginners_2406
+# Linux Crash Course with CentOS Stream 9
