@@ -20,15 +20,74 @@ $ docker restart ubuntu-cont
 ubuntu-cont
 
 $ docker exec -it ubuntu-cont /bin/bash
+
+[root@f1baa9aedc82 /]# man man          
+This system has been minimized by removing packages and content that are
+not required on a system that users do not log into.
+To restore this content, including manpages, you can run the 'unminimize'
+command. You will still need to ensure the 'man-db' package is installed.
+
+[root@f1baa9aedc82 /]# unminimize
+...
+
 [root@f1baa9aedc82 /]# apt update
 ...
+
 [root@f1baa9aedc82 /]# apt upgrade
 ...
+
 [root@f1baa9aedc82 /]# apt install man-db
 ...
-[root@f1baa9aedc82 /]# unminimize
+
+[root@f1baa9aedc82 /]# man man
+MAN(1)                                                                    Manual pager utils
+MAN(1)
+
+NAME
+       man - an interface to the system reference manuals
+
+SYNOPSIS
+       man [man options] [[section] page ...] ...
+       man -k [apropos options] regexp ...
+       man -K [man options] [section] term ...
+       man -f [whatis options] page ...
+       man -l [man options] file ...
+       man -w|-W [man options] page ...
+DESCRIPTION
+       man  is  the  system's  manual pager.  Each page argument given to man is normally the name of a program, utility or function.
 ...
-[root@f1baa9aedc82 /]# unminimize
+
+[root@f1baa9aedc82 /]# aprops echo
+echo (1)             - display a line of text
+pam_echo (8)         - PAM module for printing text messages
+
+[root@f1baa9aedc82 /]# man echo
+# Or
+[root@f1baa9aedc82 /]# man -s 1 echo
+ECHO(1)                                                                   User Commands                                                                   
+ECHO(1)
+
+NAME
+       echo - display a line of text
+
+SYNOPSIS
+       echo [SHORT-OPTION]... [STRING]...
+       echo LONG-OPTION
+
+DESCRIPTION
+       Echo the STRING(s) to standard output.
+...
+
+[root@f1baa9aedc82 /]# apropos host
+hostid (1)           - print the numeric identifier for the current host
+hostname (1)         - show or set the system's host name
+pam_rhosts (8)       - The rhosts PAM module
+users (1)            - print the user names of users currently logged in to the current host
+
+[root@f1baa9aedc82 /]# apropos host | grep pam
+pam_rhosts (8)       - The rhosts PAM module
+
+[root@f1baa9aedc82 /]# exit
 
 $ docker ps
 CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS         PORTS     NAMES
