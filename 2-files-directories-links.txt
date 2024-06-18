@@ -80,19 +80,19 @@ $ ls /jane
 example.txt
 
 # - 해당 디렉토리가 없는 경우 그 이름의 디렉토리로 저장
-$ cp -r /home/jane /smith
+$ cp -r /home/jane /aaron
 
-$ ls /smith
+$ ls /aaron
 example.txt
 
 -----------------------------------------------------------------------------------------------------
 
 # move : mv [source] [destination]
-$ mv /smith /home
+$ mv /arron /home
 
-$ ls /smith
+$ ls /aaron
 ls: cannot access '/smith': No such file or directory
-$ ls /home/smith
+$ ls /home/aaron
 example.txt
 
 -----------------------------------------------------------------------------------------------------
