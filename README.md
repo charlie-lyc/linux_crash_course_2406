@@ -1,1 +1,1 @@
-# Linux Crash Course with CentOS Stream 9
+# Linux Crash Course
