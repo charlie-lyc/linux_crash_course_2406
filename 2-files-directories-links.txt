@@ -111,14 +111,12 @@ $ ls /jane
 ls: cannot access '/jane': No such file or directory
 
 -----------------------------------------------------------------------------------------------------
+# hard links : ln path_to_target_file path_to_link_file
 
 $ mkdir /home/aaron/Pictures
-
 $ echo 'Picture of Milo the dog' > /home/aaron/Pictures/picture.txt
-
 $ cat /home/aaron/Pictures/picture.txt
 Picture of Milo the dog
-
 $ stat example.txt
   File: /home/aaron/Pictures/picture.txt
   Size: 24              Blocks: 8          IO Block: 4096   regular file
@@ -134,15 +132,33 @@ Change: 2024-06-18 23:56:59.983699259 +0000
 # 이제 아래와 같은 명령을 실행해야 하는데...
 # 만약 파일이 수백장 수천장이라면?
 $ cp -r /home/aaron/Pictures /home/jane/Pictures
+$ mkdir /home/jane/Pictures
+$ ln /home/aaron/Pictures/picture.txt /home/jane/Pictures/picture.txt
 
-# hard links : ln path_to_target_file path_to_link_file
+$ ls /home/jane/Pictures
+picture.txt
 
+$ stat /home/jane/Pictures/picture.txt
+  File: /home/jane/Pictures/picture.txt
+  Size: 24              Blocks: 8          IO Block: 4096   regular file
+Device: 0,180   Inode: 8262        Links: 2 // <=====
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2024-06-18 23:57:28.115991674 +0000
+Modify: 2024-06-18 23:56:59.983699259 +0000
+Change: 2024-06-19 03:44:29.436486478 +0000
+ Birth: 2024-06-18 23:56:59.983699259 +0000
 
+$ stat /home/aaron/Pictures/picture.txt
+  File: /home/aaron/Pictures/picture.txt
+  Size: 24              Blocks: 8          IO Block: 4096   regular file
+Device: 0,180   Inode: 8262        Links: 2 // <=====
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2024-06-18 23:57:28.115991674 +0000
+Modify: 2024-06-18 23:56:59.983699259 +0000
+Change: 2024-06-19 03:44:29.436486478 +0000
+ Birth: 2024-06-18 23:56:59.983699259 +0000
 
-
-
-
-
+# Links 갯수가 1 -> 2로 바뀌었다.
 
 
 
