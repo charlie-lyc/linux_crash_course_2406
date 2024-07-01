@@ -111,16 +111,17 @@ $ ls /jane
 ls: cannot access '/jane': No such file or directory
 
 -----------------------------------------------------------------------------------------------------
-# hard links : ln path_to_target_file path_to_link_file
+# hard links : ln [path_to_<target_file>] [path_to_<link_file>]
 
 $ mkdir /home/aaron/Pictures
 $ echo 'Picture of Milo the dog' > /home/aaron/Pictures/picture.txt
 $ cat /home/aaron/Pictures/picture.txt
 Picture of Milo the dog
-$ stat example.txt
+
+$ stat /home/aaron/Pictures/picture.txt
   File: /home/aaron/Pictures/picture.txt
   Size: 24              Blocks: 8          IO Block: 4096   regular file
-Device: 0,180   Inode: 8262        Links: 1
+Device: 0,180   Inode: 8262        Links: 1 // <=====
 Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
 Access: 2024-06-18 23:57:28.115991674 +0000
 Modify: 2024-06-18 23:56:59.983699259 +0000
@@ -129,12 +130,13 @@ Change: 2024-06-18 23:56:59.983699259 +0000
 
 # Inode, Links 에 주목!
 
-# 이제 아래와 같은 명령을 실행해야 하는데...
-# 만약 파일이 수백장 수천장이라면?
-$ cp -r /home/aaron/Pictures /home/jane/Pictures
+# 만약 아래와 같은 명령을 실행해야 하는데...
+$ cp -r /home/aaron/Pictures /home/jane/
+# 이런식으로 복사를 수십번 실행해야 한다면?
+
+# 이럴 때 cp 명령을 사용하지 말고 하드링크 명령을 사용하면 동일한 결과를 얻을 수 있다.
 $ mkdir /home/jane/Pictures
 $ ln /home/aaron/Pictures/picture.txt /home/jane/Pictures/picture.txt
-
 $ ls /home/jane/Pictures
 picture.txt
 
@@ -159,14 +161,34 @@ Change: 2024-06-19 03:44:29.436486478 +0000
  Birth: 2024-06-18 23:56:59.983699259 +0000
 
 # Inode 값은 그대로인데 , Links 값이 1 -> 2로 바뀌었다.
+# 즉, 하드 링크 포인트가 2개가 되었다.
 
+# 하드 링크는 동일한 파일 시스템내의 파일에만 적용할 수 있다.
+# 따라서 폴더에 적용하기 위해서는 동일한 사용자 그룹에 포함시켜 폴더에 대한 접근 권한을 주어야 한다.
 
+$ useradd -a -G family aaron
+$ useradd -a -G family jane
+$ chmod 660 /home/aaron/Pictures/picture.txt
 
 -----------------------------------------------------------------------------------------------------
+# 소프트 링크는 다른 파일 시스템의 폴더에도 적용할 수 있다.
+# soft links : ln -s [path_to_<target_file>] [path_to_<link_file>]
 
-# soft links
+$ rm /home/jane/Pictures/picture.txt
+$ ln -s /home/aaron/Pictures/picture.txt /home/jane/Pictures/picture_shortcut.txt
 
+$ ls -l /home/jane/Pictures/
+total 0
+lrwxrwxrwx 1 root root 32 Jul  1 23:24 picture_shortcut.txt -> /home/aaron/Pictures/picture.txt
+$ ls -l /home/aaron/Pictures/
+total 4
+-rw-r--r-- 1 root root 23 Jul  1 23:19 picture.txt
 
+$ readlink /home/jane/Pictures/picture_shortcut.txt
+/home/aaron/Pictures/picture.txt
 
-
-
+$ echo 'Test' > /home/jane/Pictures/picture_shortcut.txt
+$ cat /home/jane/Pictures/picture_shortcut.txt
+Test
+$ cat /home/aaron/Pictures/picture.txt
+Test
