@@ -170,7 +170,7 @@ $ groupadd family
 $ useradd aaron
 $ useradd jane
 $ usermod -a -G family aaron
-$ useradd -aG family jane
+$ usermod -aG family jane
 $ chmod 660 /home/aaron/Pictures/picture.txt
 
 -----------------------------------------------------------------------------------------------------
