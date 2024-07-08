@@ -1,8 +1,27 @@
+$ ls -l /home/aaron/Pictures
+            <user> <group>
+-rw-r--r-- 1 aaron family 5 Jul  1 23:32 picture.txt
+
 # change group : chgrp <group_name> <file_directory>
+$ (sudo) chgrp wheel /home/aaron/Pictures/picture.txt
 
 $ ls -l /home/aaron/Pictures
             <user> <group>
-total 4
--rw-r--r-- 1 aaron family 5 Jul  1 23:32 picture.txt
+-rw-r--r-- 1 aaron wheel 5 Jul  1 23:35 picture.txt
 
-$ chgrp wheel /home/aaron/picture.txt
+$ groups
+aaron wheel family
+
+# change owner : chown <owner_name> <file_directory>
+$ (sudo) chown jane /home/aaron/Pictures/picture.txt
+
+$ ls -l /home/aaron/Pictures
+            <user> <group>
+-rw-r--r-- 1 jane wheel 5 Jul  1 23:38 picture.txt
+
+
+$ (sudo) chown aaron:fmily /home/aaron/Pictures/picture.txt
+
+$ ls -l /home/aaron/Pictures
+            <user> <group>
+-rw-r--r-- 1 aaron family 5 Jul  1 23:34 picture.txt
